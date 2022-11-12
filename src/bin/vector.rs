@@ -1,4 +1,4 @@
-use std::io;
+use std::{io, collections::HashMap};
 
 fn main() {
 
@@ -17,6 +17,9 @@ fn main() {
 
     let median = median_fnc(&numbers);
     println!("Median is {}", median);
+
+    let mode = mode_fnc(&numbers);
+    println!("Mode is {:?}", mode);
 }
 
 fn mean_fnc(vect: &Vec<i32>) -> f64 {
@@ -37,4 +40,22 @@ fn median_fnc(vect: &Vec<i32>) -> f64 {
         return sum as f64 / 2.0
     }
     copy[size / 2] as f64
+}
+
+fn mode_fnc(vect: &Vec<i32>) -> Vec<i32> {
+    let mut counts = HashMap::new();
+    for &value in vect {
+        let count = counts.entry(value).or_insert(0);
+        *count += 1;
+    }
+
+    let top = counts.values().max().unwrap();
+    let mut modes: Vec<i32> = Vec::new();
+    for (k, v) in counts.iter() {
+        if v == top {
+            modes.push(*k);
+        }
+    }
+    return modes
+
 }
