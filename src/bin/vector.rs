@@ -9,7 +9,7 @@ fn main() {
         .expect("Numbers could not be read");
     let numbers: Vec<i32> = numbers
         .split_whitespace()
-        .map(|s| s.parse().unwrap())
+        .map(|s| s.parse().expect("Numbers should be parsable to i32"))
         .collect();
 
     let mean = mean_fnc(&numbers);
