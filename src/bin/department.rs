@@ -92,7 +92,8 @@ fn main() {
             println!("{:?}", members);
             continue;
         } else if command == "people" {
-            
+            println!("{:?}", store);
+            continue            
         } else if command == "exit" {break} else {
             println!("Command not recognized, possible commands are add, remove, department, people");
             continue;
