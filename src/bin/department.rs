@@ -74,8 +74,23 @@ fn main() {
                 }
             };
             
-        } else if command == "department" {
-
+        } else if command == "list" {
+            let department = match input.get(1) {
+                Some(v) => v.to_string(),
+                None => {
+                    println!("List requires a department (List department)");
+                    continue
+                }
+            };
+            let members = match store.get(&department) {
+                Some(v) => v,
+                None => {
+                    println!("Department not found");
+                    continue
+                }
+            };
+            println!("{:?}", members);
+            continue;
         } else if command == "people" {
             
         } else if command == "exit" {break} else {
